@@ -5,6 +5,13 @@ const Hero = () => {
     <>
       <div className="max-w-screen-xl mx-auto mb-10">
         <Image
+          src="/circular-text.jpg"
+          alt="Sommarrea 2024"
+          width={500}
+          height={500}
+          className="object-contain aspect-square h-60 w-60 absolute right-0 bottom-0 -z-10"
+        />
+        <Image
           src="/display1.jpg"
           alt="Hero girl happy"
           width={1000}
