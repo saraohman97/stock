@@ -5,7 +5,7 @@ import { TbClockHour10 } from "react-icons/tb";
 const Footer = () => {
   return (
     <div className="bg-yellow-600/70 mt-10">
-      <div className="py-10 p-4 max-w-screen-lg mx-auto text-sm">
+      <div className="pt-6 pb-10 p-4 max-w-screen-lg mx-auto text-sm">
         <div className="flex items-center justify-between gap-2">
           <h3 className="font-bold">Kundservice</h3>
           <div className="flex items-center gap-2">
@@ -25,7 +25,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-6 mt-10">
+        <div className="grid grid-cols-3 gap-6 mt-6 pt-10 border-t border-black">
           <div>
             <h3 className="font-bold">Leverans</h3>
             <div>
