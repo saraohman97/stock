@@ -3,6 +3,8 @@
 import Input from "@/components/input";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
+import axios from "axios";
+import { signIn } from "next-auth/react";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
@@ -17,6 +19,34 @@ const Auth = () => {
       currentVariant === "login" ? "register" : "login"
     );
   }, []);
+
+  const login = useCallback(async () => {
+    try {
+      await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+        callbackUrl: "/",
+      });
+
+      router.push("/dashboard");
+    } catch (error) {
+      console.log(error);
+    }
+  }, [email, password, router]);
+
+  const register = useCallback(async () => {
+    try {
+      await axios.post("/api/register", {
+        email,
+        name,
+        password,
+      });
+      login()
+    } catch (error) {
+      console.log(error);
+    }
+  }, [email, name, password, login]);
 
   return (
     <div className="bg-[url('/display4.jpg')] bg-no-repeat h-screen w-full bg-fixed bg-center bg-cover">
@@ -51,10 +81,16 @@ const Auth = () => {
             />
 
             <div className="flex gap-2 mt-6">
-              <button onClick={() => router.push('/')} className="bg-gray-700 text-white rounded w-full transition hover:bg-opacity-90 p-3 font-bold">
+              <button
+                onClick={() => router.push("/")}
+                className="bg-gray-700 text-white rounded w-full transition hover:bg-opacity-90 p-3 font-bold"
+              >
                 Tillbaka
               </button>
-              <button className="bg-yellow-900 text-white rounded w-full transition hover:bg-opacity-90 p-3 font-bold">
+              <button
+                onClick={variant === "login" ? login : register}
+                className="bg-yellow-900 text-white rounded w-full transition hover:bg-opacity-90 p-3 font-bold"
+              >
                 {variant === "login" ? "Logga in" : "Skapa konto"}
               </button>
             </div>
