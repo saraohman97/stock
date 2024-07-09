@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import getCurrentUser from "@/actions/getCurrentUser";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,10 +17,11 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const currentUser = await getCurrentUser();
-  
+
   return (
     <html lang="en">
       <body className={inter.className}>
+        <Toaster position="bottom-center" reverseOrder={false} />
         {children}
       </body>
     </html>

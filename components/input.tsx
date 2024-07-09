@@ -2,19 +2,15 @@ import React from "react";
 
 interface InputProps {
   id: string;
-  onChange: any;
-  value: string;
   label: string;
   type?: string;
 }
 
-const Input: React.FC<InputProps> = ({ id, onChange, value, label, type }) => {
+const Input: React.FC<InputProps> = ({ id, label, type }) => {
   return (
     <div className="relative">
       <input
-        onChange={onChange}
         type={type}
-        value={value}
         id={id}
         className="
             block

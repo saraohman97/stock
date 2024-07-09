@@ -1,6 +1,7 @@
 import getCurrentUser from "@/actions/getCurrentUser";
 import DashboardNavbar from "@/components/dashboard-navbar";
 import { redirect } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default async function DashboardLayout({
   children,
@@ -10,7 +11,7 @@ export default async function DashboardLayout({
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
-    redirect("/auth");
+    redirect("/auth")
   }
 
   return (
